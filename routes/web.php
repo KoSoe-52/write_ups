@@ -21,8 +21,15 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 Route::resource('users',App\Http\Controllers\UserController::class);
+Route::resource('write-ups',App\Http\Controllers\WriteUpController::class);
+Route::get("/change-password",[App\Http\Controllers\UserController::class,'changeForm'])->name("change.password.form");
+Route::post("/change-password",[App\Http\Controllers\UserController::class,'changePassword'])->name("change.password");//self password
+Route::get("/logout",[App\Http\Controllers\Auth\LoginController::class,'logout']);
 
 
-Auth::routes();
-
+Auth::routes([
+    'register' => false, 
+    'reset' => false,
+    'verify' => false, 
+]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

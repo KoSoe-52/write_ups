@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section("title","Create Account")
+@section("title","User Detail")
 @section('content')
 <div class="col-12 col-xl-6">
 	<div class="bg-secondary rounded h-100 p-4">
-		<h6 class="mb-4">Create Account</h6>
+		<h6 class="mb-4">Change Password</h6>
 		@if(session('status'))
 			<div class="text-success">
 				{{session('status')}}
@@ -14,48 +14,34 @@
 			<div class="row">
 				<div class="col-12  mb-3">
 					<div class="form-group">
-						<label for="username">Username <b class="text-danger">*</b> (min:5 and max:16 characters)</label>
-						<input type="text" id="username"  class="form-control @error('username') is-invalid @enderror" name="username" autocomplete="off">
+						<label for="password">Old Password <b class="text-danger">*</b> </label>
+						<input type="password" id="password"  class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="off">
 							<span class="invalid-feedback " role="alert">
-								<strong class='username'></strong>
+								<strong class='password'></strong>
 							</span>
 					</div>
 				</div>
 				<div class="col-12  mb-3">
 					<div class="form-group">
-						<label for="password">Password <b class="text-danger">*</b> (min:5 and max:16 characters)</label>
-						<input type="password"  id="password"  class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="off">
+						<label for="new_password">New Password <b class="text-danger">*</b></label>
+						<input type="password"  id="new_password"  class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="off">
 							<span class="invalid-feedback" role="alert">
-								<strong class='password'></strong>
+								<strong class='new_password'></strong>
 							</span>
 					</div>
 				</div>
-                <div class="col-12  mb-1">
-                    <label>Select role <b class="text-danger">*</b></label>
-                </div>
-				<div class="col-12  mb-4 row pl-3">
-                    <div class="form-check col-4">
-                        <input class="form-check-input" type="radio" name="role_id" checked  id="role_one" value="1">
-                        <label class="form-check-label" for="role_one">
-                           Admin
-                        </label>
-                    </div>
-                    <div class="form-check col-4">
-                        <input class="form-check-input" type="radio" name="role_id"  id="role_two" value="2">
-                        <label class="form-check-label" for="role_two">
-                           User
-                        </label>
-                    </div>
-                    <div class="form-check col-4">
-                        <input class="form-check-input" type="radio" name="role_id"  id="role_three" value="3">
-                        <label class="form-check-label" for="role_three">
-                           Team
-                        </label>
-                    </div>
+				<div class="col-12  mb-4">
+					<div class="form-group">
+						<label for="confirm_password">Confirm New Password <b class="text-danger">*</b></label>
+						<input type="password" name="confirm_password"  id="confirm_password" class="form-control @error('confirm_password') is-invalid @enderror" autocomplete="off">
+							<span class="invalid-feedback" role="alert">
+								<strong class='confirm_password'></strong>
+							</span>
+					</div>
 				</div>
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Account</button>
+						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Change password</button>
 					</div>
 				</div>
 			</div>
@@ -66,7 +52,7 @@
 @section('script')
 	<script>
 		$(document).ready(function(){
-			$(".user-list").addClass("active");
+			$(".setting").addClass("active");
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -76,7 +62,7 @@
 				ev.preventDefault();
 				var formdata = new FormData(this);
 				$.ajax({
-					url:  "{{ route('users.store') }}",
+					url:  "{{ route('change.password') }}",
 					type: "POST",
 					data:  formdata,
 					cache:false,
