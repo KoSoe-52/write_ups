@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\WriteUp;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Category;
 class WriteUpController extends Controller
 {
     /**
@@ -12,7 +15,8 @@ class WriteUpController extends Controller
      */
     public function index()
     {
-        //
+        $write_ups = WriteUp::paginate(10);
+        return view("write_ups.index",compact("write_ups"));
     }
 
     /**
@@ -20,7 +24,8 @@ class WriteUpController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view("write_ups.create",compact("categories"));
     }
 
     /**
@@ -28,7 +33,34 @@ class WriteUpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make(
+            $request->only('title','category_id','content'),
+            [
+                'title' => ['required'],
+                'category_id' => ['required'],
+                'content' => ['required'],
+            ]
+        );
+        if($validate->fails()){
+            return response()->json([
+                "status"  => false,
+                "msg"     => "Insufficient fields",
+                "data" => $validate->errors()->toArray()
+            ]);
+        }else
+        {
+            $data = new WriteUp();
+            $data->title = $request->title;
+            $data->category_id= $request->category_id;
+            $data->content = $request->content;
+            $data->user_id = Auth::user()->id;
+            $data->save();
+            return response()->json([
+                "status"  => true,
+                "msg"     => "Content created",
+                "data" => []
+            ]);
+        }
     }
 
     /**
@@ -44,7 +76,7 @@ class WriteUpController extends Controller
      */
     public function edit(WriteUp $writeUp)
     {
-        //
+        return view("write_ups.edit",compact('writeUp'));
     }
 
     /**

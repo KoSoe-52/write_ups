@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Category;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -63,6 +65,46 @@ class DatabaseSeeder extends Seeder
             if($count < 1)
             {
                 User::insert($user);
+            }
+
+        }
+        $categories =array(
+            array(
+                'id' => 1,
+                'name' => 'Web',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ),
+            array(
+                'id' => 2,
+                'name' => 'Crypto',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ),
+            array(
+                'id' => 3,
+                'name' => 'Pwn',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ),
+            array(
+                'id' => 4,
+                'name' => 'RE',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ),
+            array(
+                'id' => 5,
+                'name' => 'Forensic',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ),
+        );
+        foreach ($categories as $category) {
+            $count = Category::where("id",$category["id"])->count();
+            if($count < 1)
+            {
+                Category::insert($category);
             }
 
         }

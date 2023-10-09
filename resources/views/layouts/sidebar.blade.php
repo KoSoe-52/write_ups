@@ -46,8 +46,8 @@
 				</div>
 			</div> -->
 
-			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Write ups List</a>
-			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Create Writeup</a>
+			<a href="{{ route('write-ups.index') }}" class="nav-item nav-link write-up-list p-0"><i class="fa fa-times me-2"></i>Write ups List</a>
+			<a href="{{ route('write-ups.create') }}" class="nav-item nav-link write-up-create p-0"><i class="fa fa-times me-2"></i>Create Writeup</a>
 
 			<a href="{{ route('users.index') }}" class="nav-item nav-link user-list p-0"><i class="fa fa-users me-2"></i>User List</a>
 			
