@@ -37,5 +37,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-
+     public function roles(){
+        return $this->belongsTo("App\Models\Role","role_id","id");//role_id fk, id pk
+     }
 }

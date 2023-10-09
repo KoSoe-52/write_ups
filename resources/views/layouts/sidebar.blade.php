@@ -49,7 +49,7 @@
 			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Write ups List</a>
 			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Create Writeup</a>
 
-			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>User List</a>
+			<a href="{{ route('users.index') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>User List</a>
 			
 			<a href="#" class="nav-item nav-link setting p-0"><i class="fa fa-cog me-2"></i>Setting</a>
 			<a href="#" class="nav-item nav-link logout p-0"><i class="fa fa-power-off me-2"></i>Logout</a>
