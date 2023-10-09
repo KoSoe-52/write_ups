@@ -37,18 +37,19 @@
 		<div class="navbar-nav w-100">
 			<a href="{{ url('/dashboard') }}" class="nav-item nav-link dashboard p-0"><i class="fa fa-tachometer-alt me-2"></i> Dashboard</a>
 			
-			<div class="nav-item dropdown">
+			<!-- <div class="nav-item dropdown">
 				<a href="#" class="nav-link dropdown-toggle bet-lists p-0" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Bet Lists</a>
 				<div class="dropdown-menu bg-transparent border-0">
 					<a href="#" class="dropdown-item">Crypto 2D Bets</a>
 					<a href="#" class="dropdown-item">MM 2D Bets</a>
 					
 				</div>
-			</div>
+			</div> -->
 
-			
-			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Create User</a>
-			<a href="#" class="nav-item nav-link time-info p-0"><i class="fa fa-calendar me-2"></i> Time Lists </a>
+			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Write ups List</a>
+			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>Create Writeup</a>
+
+			<a href="{{ url('create') }}" class="nav-item nav-link close-date p-0"><i class="fa fa-times me-2"></i>User List</a>
 			
 			<a href="#" class="nav-item nav-link setting p-0"><i class="fa fa-cog me-2"></i>Setting</a>
 			<a href="#" class="nav-item nav-link logout p-0"><i class="fa fa-power-off me-2"></i>Logout</a>
