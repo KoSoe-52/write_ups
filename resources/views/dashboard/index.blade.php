@@ -5,46 +5,46 @@
     <div class="row">
             <div class="col-sm-6 col-xl-3 mb-2">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-users fa-3x text-success"></i>
+                    <i class="fa fa-th me-2 fa-3x text-success"></i>
                     <div class="ms-3">
                         <p class="mb-2">Web</p>
-                        <h6 class="mb-0">100</h6>
+                        <h6 class="mb-0">{{$web}}</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 mb-2">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-users fa-3x text-info"></i>
+                    <i class="fa fa-th me-2 fa-3x text-info"></i>
                     <div class="ms-3">
                         <p class="mb-2">Crypto</p>
-                        <h6 class="mb-0">200</h6>
+                        <h6 class="mb-0">{{$crypto}}</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 mb-2">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-users fa-3x text-light"></i>
+                    <i class="fa fa-th me-2 fa-3x text-light"></i>
                     <div class="ms-3">
                         <p class="mb-2">Pwn</p>
-                        <h6 class="mb-0">20</h6>
+                        <h6 class="mb-0">{{$pwn}}</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 mb-2">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-users fa-3x text-primary"></i>
+                    <i class="fa fa-th me-2 fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">RE</p>
-                        <h6 class="mb-0">50</h6>
+                        <h6 class="mb-0">{{$re}}</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 mb-2">
                 <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-users fa-3x text-warning"></i>
+                    <i class="fa fa-th me-2 fa-3x text-warning"></i>
                     <div class="ms-3">
                         <p class="mb-2">Forensic</p>
-                        <h6 class="mb-0">120</h6>
+                        <h6 class="mb-0">{{$forensic}}</h6>
                     </div>
                 </div>
             </div>

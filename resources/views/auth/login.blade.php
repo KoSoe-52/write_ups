@@ -34,7 +34,7 @@
                         <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <!-- <a href="index.html" class=""> -->
-                                    <h3 class="text-primary"> <img src="{{asset('images/logo.png')}}" alt="logo" style="width:60px;height:60px;"> Write Up Login</h3>
+                                    <h3 class="text-success"> <img src="{{asset('images/logo.png')}}" alt="logo" style="width:60px;height:60px;"> CTF TRAINER</h3>
                                 <!-- </a> -->
                                 <!-- <h3>Crypto-2D</h3> -->
                             </div>
@@ -59,7 +59,7 @@
                                 @enderror
                                 
                             </div>
-                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4 mt-4"> Sign In</button>
+                            <button type="submit" class="btn btn-success py-3 w-100 mb-4 mt-4"> Sign In</button>
                         </div>                        
                     </form>
                 </div>

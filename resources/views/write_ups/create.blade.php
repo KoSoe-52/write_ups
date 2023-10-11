@@ -24,8 +24,8 @@
 				<div class="col-12  mb-3">
 					<div class="form-group">
 						<label for="category_id">Category <b class="text-danger">*</b> </label>
-                        <select class="form-select mb-3 @error('category_id') is-invalid @enderror" name="category_id" >
-                                <option selected="">Select</option>
+                        <select class="form-select mb-3 @error('category_id') is-invalid @enderror" id="category_id" name="category_id" >
+                                <option value="">Select</option>
                                 @if(count($categories) > 0)
                                     @foreach($categories as $key=>$category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -39,8 +39,39 @@
 				</div>
                 
 				<div class="col-12  mb-4">
-                    <textarea class="form-control" name="content"  id="div_editor1"></textarea>
+                    <textarea class="form-control @error('content') is-invalid @enderror" name="content"   id="content"></textarea>
+					<span class="invalid-feedback" role="alert">
+						<strong class='content'></strong>
+					</span>
 				</div>
+				@if(Auth::user()->role_id ==1)
+					<div class="col-12  mb-3">
+						<div class="form-group">
+							<label for="point">Point <b class="text-danger">*</b> </label>
+							<input type="text" id="point" value="0"  class="form-control @error('point') is-invalid @enderror" name="point" autocomplete="off">
+								<span class="invalid-feedback " role="alert">
+									<strong class='point'></strong>
+								</span>
+						</div>
+					</div>
+					<div class="col-12  mb-1">
+						<label>Published or Unpublished <b class="text-danger">*</b></label>
+					</div>
+					<div class="col-12  mb-3 row pl-3">
+						<div class="form-check col-6 ml-3">
+							<input class="form-check-input" type="radio" name="status" checked  id="Published" value="2">
+							<label class="form-check-label" for="Published" style="cursor:pointer">
+								Published
+							</label>
+						</div>
+						<div class="form-check col-6">
+							<input class="form-check-input" type="radio" name="status"   id="Unpublished" value="1">
+							<label class="form-check-label" for="Unpublished" style="cursor:pointer">
+								Unpublished
+							</label>
+						</div>
+					</div>
+				@endif
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
 						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Write up</button>
@@ -56,7 +87,7 @@
     <script type="text/javascript" src="{{ asset('richtexteditor/rte.js') }}"></script>
     <script type="text/javascript" src="{{ asset('richtexteditor/plugins/all_plugins.js') }}"></script>
 	<script>
-        var editor1 = new RichTextEditor("#div_editor1", { editorResizeMode: "height" });
+        var editor1 = new RichTextEditor("#content", { editorResizeMode: "height" });
 		$(document).ready(function(){
 			$(".write-up-create").addClass("active");
 			$.ajaxSetup({
@@ -79,18 +110,21 @@
 						if(response.status === true)
 						{
 							Swal.fire({
+									icon :'success',
 									title: response.msg,
 									width: 300,
 									color: '#716add',
 									showCancelButton: false,
 									showConfirmButton: false,
-									timer:1000
+									timer:1500
 								});
-							window.location.reload();
+							setInterval(() => {
+								window.location.reload();
+							}, 1500);
 						}else
 						{
 							$.each( response.data, function( key, value ) {
-								//console.log(key+"/"+value);
+								console.log(key+"/"+value);
 								$("."+key).text(value);
 								$("#"+key).addClass("is-invalid");
 							});

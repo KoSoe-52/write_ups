@@ -8,7 +8,7 @@
     <meta content="Myan Myan Bet" name="keywords">
     <meta content="Crypto 2D and Thailand 2D" name="description">
     <!-- Favicon -->
-    <link href="{{ asset('images/favicon.png') }}" rel="icon">
+    <link href="{{ asset('images/logo.png') }}" rel="icon">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>

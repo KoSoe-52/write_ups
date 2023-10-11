@@ -11,22 +11,32 @@
 		@endif
 		<form class="form mb-2" id="insertForm">
 			@csrf
+			@method('PUT')
 			<div class="row">
 				<div class="col-12  mb-3">
 					<div class="form-group">
 						<label for="title">Title <b class="text-danger">*</b> </label>
-						<input type="text" id="title"  class="form-control @error('title') is-invalid @enderror" name="title" autocomplete="off">
+						<input type="text" id="title" value="{{ $writeUp->title }}"  class="form-control @error('title') is-invalid @enderror" name="title" autocomplete="off">
 							<span class="invalid-feedback " role="alert">
 								<strong class='title'></strong>
 							</span>
 					</div>
+					<input type="hidden" id="write_up_id" value="{{$writeUp->id}}">
 				</div>
 				<div class="col-12  mb-3">
 					<div class="form-group">
 						<label for="category_id">Category <b class="text-danger">*</b> </label>
                         <select class="form-select mb-3 @error('category_id') is-invalid @enderror" name="category_id" >
-                                <option selected="">Select</option>
-                                
+							<option selected="">--Select--</option>
+							@if(count($categories) > 0)
+								@foreach($categories as $key=>$category)
+									@if($category->id == $writeUp->category_id)
+										<option value="{{$category->id}}" selected>{{$category->name}}</option>
+									@else
+										<option value="{{$category->id}}">{{$category->name}}</option>
+									@endif
+								@endforeach
+							@endif
                         </select>
                         <span class="invalid-feedback" role="alert">
 							<strong class='category_id'></strong>
@@ -39,6 +49,41 @@
                         {{$writeUp->content}}
                     </textarea>
 				</div>
+				@if(Auth::user()->role_id ==1)
+					<div class="col-12  mb-3">
+						<div class="form-group">
+							<label for="point">Point <b class="text-danger">*</b> </label>
+							<input type="text" id="point" value="{{ $writeUp->point }}"  class="form-control @error('point') is-invalid @enderror" name="point" autocomplete="off">
+								<span class="invalid-feedback " role="alert">
+									<strong class='point'></strong>
+								</span>
+						</div>
+					</div>
+					<div class="col-12  mb-1">
+						<label>Published or Unpublished <b class="text-danger">*</b></label>
+					</div>
+					@if($writeUp->status == 1)
+						@php $Unpublished = "checked" @endphp
+						@php $Published = "" @endphp
+					@else 
+						@php $Unpublished = "" @endphp
+						@php $Published = "checked" @endphp
+					@endif
+					<div class="col-12  mb-3 row pl-3">
+						<div class="form-check col-6 ml-3">
+							<input class="form-check-input" type="radio" name="status" {{$Published}}  id="Published" value="2">
+							<label class="form-check-label" for="Published" style="cursor:pointer">
+							Published
+							</label>
+						</div>
+						<div class="form-check col-6">
+							<input class="form-check-input" type="radio" name="status"  {{$Unpublished}} id="Unpublished" value="1">
+							<label class="form-check-label" for="Unpublished" style="cursor:pointer">
+							Unpublished
+							</label>
+						</div>
+					</div>
+				@endif
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
 						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Write up</button>
@@ -64,9 +109,13 @@
 			});
 			$(document).on("submit","#insertForm",function(ev){
 				ev.preventDefault();
+				//alert('hello');
 				var formdata = new FormData(this);
+				var write_up_id = $("#write_up_id").val();
+				var url = "{{ route('write-ups.update', ":id") }}";
+                          url = url.replace(':id', write_up_id);
 				$.ajax({
-					url:  "{{ route('write-ups.store') }}",
+					url:  url,
 					type: "POST",
 					data:  formdata,
 					cache:false,
@@ -82,9 +131,11 @@
 									color: '#716add',
 									showCancelButton: false,
 									showConfirmButton: false,
-									timer:1000
+									timer:1500
 								});
-							window.location.reload();
+							setInterval(() => {
+								//window.location.reload();
+							}, 1500);
 						}else
 						{
 							$.each( response.data, function( key, value ) {

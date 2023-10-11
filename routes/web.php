@@ -17,16 +17,17 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 Route::post('mylogin', [App\Http\Controllers\Auth\LoginController::class, 'mylogin']);
-Route::get('/', function () {
-    return view('dashboard.index');
-});
-Route::resource('users',App\Http\Controllers\UserController::class);
+Route::get("/",[App\Http\Controllers\DashboardController::class,'index'])->name("dashboard.index");
+
 Route::resource('write-ups',App\Http\Controllers\WriteUpController::class);
-Route::get("/change-password",[App\Http\Controllers\UserController::class,'changeForm'])->name("change.password.form");
-Route::post("/change-password",[App\Http\Controllers\UserController::class,'changePassword'])->name("change.password");//self password
 Route::get("/logout",[App\Http\Controllers\Auth\LoginController::class,'logout']);
-
-
+Route::middleware(["admin"])->group(function(){
+    Route::resource('users',App\Http\Controllers\UserController::class);
+});
+Route::middleware(["auth"])->group(function(){
+    Route::get("/change-password",[App\Http\Controllers\UserController::class,'changeForm'])->name("change.password.form");
+    Route::post("/change-password",[App\Http\Controllers\UserController::class,'changePassword'])->name("change.password");//self password
+});
 Auth::routes([
     'register' => false, 
     'reset' => false,

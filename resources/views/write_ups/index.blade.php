@@ -14,7 +14,11 @@
 					<th scope="col">#</th>
 					<th scope="col">Title</th>
 					<th scope="col">Category</th>
+					<th scope="col">Add User</th>
+					<th scope="col">Point</th>
+					<th scope="col">Private / Public</th>
                     <th scope="col">Created at</th>
+					<th scope="col"> </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,9 +26,32 @@
 				@foreach($write_ups as $key=>$write_up)
 					<tr>
 						<th scope="row">{{ $key + 1}}</th>
-						<td><a href="{{ route('write-ups.edit',$write_up->id) }}">{{$write_up->title}}</a></td>
+						<td>{{$write_up->title}}</td>
 						<td>{{$write_up->categories->name}}</td>
-						<td>{{date('d-m-Y H:i',strtotime($write_up->created_at))}}</td>
+						<td>{{$write_up->users->username}}</td>
+						<td>{{$write_up->point}}</td>
+						<td>
+							@if($write_up->status == 1)
+								<span class="badge bg-danger">Private</span>
+							@else
+								<span class="badge bg-success">Public</span>
+							@endif
+						</td>
+						<td>{{date('d-m-Y H:i',strtotime($write_up->created_at))}} </td>
+						<td>
+							@if(Auth::check())
+								@if((Auth::user()->role_id == 1 || Auth::user()->role_id == $write_up->user_id) || ((Auth::user()->role_id == 2 && Auth::user()->role_id == 3) || $write_up->status == 2))
+									<a href="{{ route('write-ups.show',$write_up->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> View</a>
+								@endif
+							@elseif($write_up->status == 2)
+								<a href="{{ route('write-ups.show',$write_up->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> View</a>
+							@endif
+							@if(Auth::check())
+								@if((Auth::user()->role_id == 1 || Auth::user()->role_id == $write_up->user_id))
+									<a href="{{ route('write-ups.edit',$write_up->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+								@endif
+							@endif
+						</td>
 					</tr>
 				@endforeach
 			@else
