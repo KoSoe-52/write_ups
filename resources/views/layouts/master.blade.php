@@ -14,9 +14,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://192.168.100.101:8081/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Template Stylesheet -->
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('https://192.168.100.101:8081/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"> -->
 </head>
@@ -60,11 +60,11 @@
      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('lib/chart/chart.min.js')}}"></script>
-    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
-    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('lib/tempusdominus/js/moment.min.js')}}"></script>
-    <script src="{{asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{asset('https://192.168.100.101:8081/lib/chart/chart.min.js')}}"></script>
+    <script src="{{asset('https://192.168.100.101:8081/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('https://192.168.100.101:8081/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('https://192.168.100.101:8081/lib/tempusdominus/js/moment.min.js')}}"></script>
+    <script src="{{asset('https://192.168.100.101:8081/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
     <!-- Template Javascript -->
     <script src="{{asset('js/main.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
