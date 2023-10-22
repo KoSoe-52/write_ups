@@ -5,8 +5,8 @@
     <title>@yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-    <meta content="Myan Myan Bet" name="keywords">
-    <meta content="Crypto 2D and Thailand 2D" name="description">
+    <meta content="CTDF" name="keywords">
+    <meta content="CTFD" name="description">
     <!-- Favicon -->
     <link href="{{ asset('images/logo.png') }}" rel="icon">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
