@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        $env = "local";
-        if (@$_SERVER["APP_ENV"]) $env = $_SERVER["APP_ENV"];
-        if ($env === 'production') {
-            URL::forceScheme('https');
-        }
+        // $env = "local";
+        // if (@$_SERVER["APP_ENV"]) $env = $_SERVER["APP_ENV"];
+        // if ($env === 'production') {
+        //     URL::forceScheme('http');
+        // }
     }
 }
