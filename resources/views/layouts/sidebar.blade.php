@@ -54,7 +54,7 @@
 				<a href="{{ route('change.password.form') }}" class="nav-item nav-link setting p-0"><i class="fa fa-cog me-2"></i>Setting</a>
 				<a href="{{ route('logout') }}" class="nav-item nav-link logout p-0"><i class="fa fa-power-off me-2"></i>Sign out</a>
 			@else 
-				<a href="{{ route('/login') }}" class="nav-item nav-link logout p-0"><i class="fa fa-arrow-right me-2"></i>Sign in</a>
+				<a href="{{ url('/login') }}" class="nav-item nav-link logout p-0"><i class="fa fa-arrow-right me-2"></i>Sign in</a>
 			@endif
 		</div>
 	</nav>
