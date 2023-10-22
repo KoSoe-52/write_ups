@@ -40,8 +40,8 @@
 			</div>
 		</div>
 		<div class="navbar-nav w-100">
-			<a href="{{ url('/') }}" class="nav-item nav-link dashboard p-0"><i class="fa fa-tachometer-alt me-2"></i> Dashboard</a>
-			<a href="{{ url('write-ups') }}" class="nav-item nav-link write-up-list p-0"><i class="fa fa-th me-2"></i>Write ups List</a>
+			<a href="/" class="nav-item nav-link dashboard p-0"><i class="fa fa-tachometer-alt me-2"></i> Dashboard</a>
+			<a href="write-ups" class="nav-item nav-link write-up-list p-0"><i class="fa fa-th me-2"></i>Write ups List</a>
 			@if(Auth::check())
 				<a href="{{ url('write-ups/create') }}" class="nav-item nav-link write-up-create p-0"><i class="fa fa-edit me-2"></i>Create Writeup</a>
 			@endif
