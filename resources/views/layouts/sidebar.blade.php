@@ -40,21 +40,21 @@
 			</div>
 		</div>
 		<div class="navbar-nav w-100">
-			<a href="{{ url('http://192.168.100.101:8081') }}" class="nav-item nav-link dashboard p-0"><i class="fa fa-tachometer-alt me-2"></i> Dashboard</a>
-			<a href="{{ url('http://192.168.100.101:8081/write-ups') }}" class="nav-item nav-link write-up-list p-0"><i class="fa fa-th me-2"></i>Write ups List</a>
+			<a href="{{ route('dashboard.index') }}" class="nav-item nav-link dashboard p-0"><i class="fa fa-tachometer-alt me-2"></i> Dashboard</a>
+			<a href="{{ route('write-ups.index') }}" class="nav-item nav-link write-up-list p-0"><i class="fa fa-th me-2"></i>Write ups List</a>
 			@if(Auth::check())
-				<a href="{{ url('write-ups/create') }}" class="nav-item nav-link write-up-create p-0"><i class="fa fa-edit me-2"></i>Create Writeup</a>
+				<a href="{{ route('write-ups.create') }}" class="nav-item nav-link write-up-create p-0"><i class="fa fa-edit me-2"></i>Create Writeup</a>
 			@endif
 			@if(Auth::check())
 				@if(Auth::user()->role_id == 1)
-					<a href="{{ url('users') }}" class="nav-item nav-link user-list p-0"><i class="fa fa-users me-2"></i>User List</a>
+					<a href="{{ route('users.index') }}" class="nav-item nav-link user-list p-0"><i class="fa fa-users me-2"></i>User List</a>
 				@endif
 			@endif
 			@if(Auth::check())
-				<a href="{{ url('change-password') }}" class="nav-item nav-link setting p-0"><i class="fa fa-cog me-2"></i>Setting</a>
-				<a href="{{ url('logout') }}" class="nav-item nav-link logout p-0"><i class="fa fa-power-off me-2"></i>Sign out</a>
+				<a href="{{ route('change.password.form') }}" class="nav-item nav-link setting p-0"><i class="fa fa-cog me-2"></i>Setting</a>
+				<a href="{{ route('logout') }}" class="nav-item nav-link logout p-0"><i class="fa fa-power-off me-2"></i>Sign out</a>
 			@else 
-				<a href="{{ url('/login') }}" class="nav-item nav-link logout p-0"><i class="fa fa-arrow-right me-2"></i>Sign in</a>
+				<a href="{{ route('/login') }}" class="nav-item nav-link logout p-0"><i class="fa fa-arrow-right me-2"></i>Sign in</a>
 			@endif
 		</div>
 	</nav>

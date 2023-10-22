@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $env = "local";
         if (@$_SERVER["APP_ENV"]) $env = $_SERVER["APP_ENV"];
         if ($env === 'production') {
-            URL::forceScheme('http');
+            URL::forceScheme('https');
         }
     }
 }
