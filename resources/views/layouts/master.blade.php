@@ -8,13 +8,13 @@
     <meta content="CTFD" name="keywords">
     <meta content="CTFD" name="description">
     <!-- Favicon -->
-    <link href="{{ asset('images/logo.png') }}" rel="icon">
+    <link href="{{asset('images/logo.png')}}" rel="icon">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Template Stylesheetdd  -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
