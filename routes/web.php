@@ -23,6 +23,7 @@ Route::resource('write-ups',App\Http\Controllers\WriteUpController::class);
 Route::get("/logout",[App\Http\Controllers\Auth\LoginController::class,'logout']);
 Route::middleware(["admin"])->group(function(){
     Route::resource('users',App\Http\Controllers\UserController::class);
+    Route::resource("categories",App\Http\Controllers\CategoryController::class);
 });
 Route::middleware(["auth"])->group(function(){
     Route::get("/change-password",[App\Http\Controllers\UserController::class,'changeForm'])->name("change.password.form");

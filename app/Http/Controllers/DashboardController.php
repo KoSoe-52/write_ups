@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\WriteUp;
+use App\Models\Category;
 class DashboardController extends Controller
 {
     /**
@@ -11,12 +13,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $web = WriteUp::where("category_id",1)->count();
-        $crypto = WriteUp::where("category_id",2)->count();
-        $pwn = WriteUp::where("category_id",3)->count();
-        $re = WriteUp::where("category_id",4)->count();
-        $forensic = WriteUp::where("category_id",5)->count();
-        return view("dashboard.index",compact('web','crypto','pwn','re','forensic'));
+        $categories = Category::leftJoin("write_ups","categories.id","=","write_ups.category_id")
+                     ->select("categories.name","categories.image",DB::raw("COUNT(write_ups.id) as total"))
+                     ->groupBy(["categories.name","categories.image"])->get();
+        return view("dashboard.index",compact('categories'));
     }
 
     /**

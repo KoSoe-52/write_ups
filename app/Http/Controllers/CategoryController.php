@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
     /**
@@ -12,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy("id","DESC")->paginate(10);
+        return view("categories.index",compact("categories"));
     }
 
     /**
@@ -20,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("categories.create");
     }
 
     /**
@@ -28,7 +30,29 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->only('name','image'), [
+            'name' => ['required','unique:categories,name'],
+            'image' => ['required'],
+        ]);
+        if ($validate->fails()) {
+            return response()->json([
+                "status"  => false,
+                "msg"     => "Insufficient fields",
+                "data" => $validate->errors()->toArray()
+            ]);
+        } else {
+            $fileName = date('d-m-Y').'_'.time().'_'.$request->image->getClientOriginalName();
+            $filePath = $request->file('image')->storeAs('categories', $fileName, 'public');
+            $data = new Category();
+            $data->name = $request->name;
+            $data->image = $filePath;
+            $data->save();
+            return response()->json([
+                "status"  => true,
+                "msg"     => "Category created successfully",
+                "data" => []
+            ]);
+        }
     }
 
     /**
@@ -44,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view("categories.edit",compact("category"));
     }
 
     /**
@@ -52,7 +76,25 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validate = Validator::make($request->only('name'), [
+            'name' => ['required']
+        ]);
+        if ($validate->fails()) {
+            return redirect()->route("categories.edit",$category->id)->with("error","Update category error");
+        } else {
+            if($request->has("image"))
+            {
+                $fileName = date('d-m-Y').'_'.time().'_'.$request->image->getClientOriginalName();
+                $filePath = $request->file('image')->storeAs('categories', $fileName, 'public');
+            }else
+            {
+                $filePath = $category->image;
+            }
+            $category->name = $request->name;
+            $category->image = $filePath;
+            $category->save();
+            return redirect()->route("categories.edit",$category->id)->with("success","Successfully updated");
+        }
     }
 
     /**

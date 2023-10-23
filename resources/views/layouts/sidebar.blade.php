@@ -48,6 +48,7 @@
 			@if(Auth::check())
 				@if(Auth::user()->role_id == 1)
 					<a href="{{ route('users.index') }}" class="nav-item nav-link user-list p-0"><i class="fa fa-users me-2"></i>User List</a>
+					<a href="{{ route('categories.index') }}" class="nav-item nav-link category-list p-0"><i class="fa fa-th me-2"></i>Category List</a>
 				@endif
 			@endif
 			@if(Auth::check())

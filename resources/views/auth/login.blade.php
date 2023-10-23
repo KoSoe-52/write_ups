@@ -7,7 +7,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     <!-- Favicon -->
-    <link href="{{asset('images/favicon.png')}}" rel="icon">
+    <link href="{{asset('images/logo.png')}}" rel="icon">
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
