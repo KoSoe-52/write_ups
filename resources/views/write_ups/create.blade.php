@@ -9,7 +9,7 @@
 				{{session('status')}}
 			</div>
 		@endif
-		<form class="form mb-2" id="insertForm">
+		<form class="form mb-2" enctype="multipart/form-data" id="insertForm">
 			@csrf
 			<div class="row">
 				<div class="col-12  mb-3">
@@ -87,7 +87,6 @@
     <script type="text/javascript" src="{{ asset('richtexteditor/rte.js') }}"></script>
     <script type="text/javascript" src="{{ asset('richtexteditor/plugins/all_plugins.js') }}"></script>
 	<script>
-        var editor1 = new RichTextEditor("#content", { editorResizeMode: "height" });
 		$(document).ready(function(){
 			$(".write-up-create").addClass("active");
 			$.ajaxSetup({
@@ -142,5 +141,10 @@
 				});
 			});
 		});
+		var token=$('meta[name="csrf-token"]').attr('content');
+		var config = {};
+		var path = "{{ url('') }}";
+        var editor1 = new RichTextEditor("#content", { editorResizeMode: "height" });
+		
 	</script>
 @endsection

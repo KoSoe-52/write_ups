@@ -44,6 +44,8 @@
 			<a href="{{ route('write-ups.index') }}" class="nav-item nav-link write-up-list p-0"><i class="fa fa-th me-2"></i>Write ups List</a>
 			@if(Auth::check())
 				<a href="{{ route('write-ups.create') }}" class="nav-item nav-link write-up-create p-0"><i class="fa fa-edit me-2"></i>Create Writeup</a>
+				<a href="{{ route('files.index') }}" class="nav-item nav-link file-index p-0"><i class="fa fa-file me-2"></i>Upload Files</a>
+
 			@endif
 			@if(Auth::check())
 				@if(Auth::user()->role_id == 1)

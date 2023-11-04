@@ -26,6 +26,8 @@ Route::middleware(["admin"])->group(function(){
     Route::resource("categories",App\Http\Controllers\CategoryController::class);
 });
 Route::middleware(["auth"])->group(function(){
+    Route::resource('files',App\Http\Controllers\FileController::class);
+    Route::post("/fileupload",[App\Http\Controllers\FileUploadController::class,'fileupload']);
     Route::get("/change-password",[App\Http\Controllers\UserController::class,'changeForm'])->name("change.password.form");
     Route::post("/change-password",[App\Http\Controllers\UserController::class,'changePassword'])->name("change.password");//self password
 });
