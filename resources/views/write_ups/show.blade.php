@@ -16,7 +16,10 @@
 	</div>
 	<div class="table-responsive">
         <div>
-            <?php echo html_entity_decode($writeUp->content); ?>
+            <?php 
+			echo html_entity_decode($writeUp->content); 
+			?>
+			
         </div>
 	</div>
 </div>
