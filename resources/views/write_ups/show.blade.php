@@ -17,30 +17,32 @@
 	<div class="table-responsive">
         <div>
             <?php 
-			$dom = new DomDocument();
-			$dom->loadHTML($writeUp->content);
-			$customTags = $dom->getElementsByTagName('a');
-			// Iterate through each customtag and replace it with an iframe
-			foreach ($customTags as $customTag) {
-				$src = $customTag->getAttribute('href');
-
-				// Create a new iframe element
-				$iframe = $dom->createElement('iframe');
-				$iframe->setAttribute('src', $src);
-				$iframe->setAttribute("class","col-12");
-				$iframe->setAttribute("height",800);
-
-				// Replace the customtag with the iframe
-				$customTag->parentNode->replaceChild($iframe, $customTag);
-			}
-
-			// Get the modified HTML
-			$modifiedHtml = $dom->saveHTML();
-
-			// Output the modified HTML
-			echo html_entity_decode($modifiedHtml);
+				$dom = new DomDocument();
+				$dom->loadHTML($writeUp->content);
+				$customTags = $dom->getElementsByTagName('a');
+				// Iterate through each customtag and replace it with an iframe
+				if(count($customTags)> 0 )
+				{
+					foreach($customTags as $customTag) {
+						$src = $customTag->getAttribute('href');
+						// Create a new iframe element
+						$iframe = $dom->createElement('iframe');
+						$iframe->setAttribute('src', $src);
+						$iframe->setAttribute("class","col-12");
+						$iframe->setAttribute("height",800);
+						// Replace the customtag with the iframe
+						$customTag->parentNode->replaceChild($iframe, $customTag);
+					}
+					// Get the modified HTML
+					$modifiedHtml = $dom->saveHTML();
+					// Output the modified HTML
+					echo html_entity_decode($modifiedHtml);
+				}else
+				{
+					echo html_entity_decode($writeUp->content);
+				}
+				
 			?>	
-			
         </div>
 	</div>
 </div>
