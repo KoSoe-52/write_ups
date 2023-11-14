@@ -100,9 +100,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view("users.edit",compact("user"));
     }
 
     /**
@@ -110,7 +111,37 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if($request->password !="")
+        {
+            $validate = Validator::make($request->only('password','role_id','lock'), [
+                'password' => ['required', 'min:5', 'max:16'],
+                'role_id' => 'required',
+                'lock'=>'required'
+            ]);
+        }else
+        {
+            $validate = Validator::make($request->only('role_id','lock'), [
+                'role_id' => 'required',
+                'lock'=>'required'
+            ]);
+        }
+        if ($validate->fails()) {
+            return response()->json([
+                "status"  => false,
+                "msg"     => "Insufficient fields",
+                "data" => $validate->errors()->toArray()
+            ]);
+        } else {
+            $data = User::find($id);
+            if($request->password !="")
+            {
+                $data->password = Hash::make($request->password);
+            }
+            $data->role_id = (int) $request->role_id;
+            $data->lock = $request->lock;
+            $data->update();
+            return redirect()->route("users.edit",$id)->with("status","Account updated successfully");
+        }
     }
 
     /**

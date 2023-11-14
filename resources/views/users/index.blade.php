@@ -18,6 +18,8 @@
 					<th scope="col">Username</th>
 					<th scope="col">Role</th>
 					<th scope="col">Point</th>
+					<th scope="col">Status</th>
+
                     <th scope="col">Created at</th>
 					<th scope="col">Action</th>
 				</tr>
@@ -30,9 +32,16 @@
 						<td>{{$user->username}}</td>
 						<td>{{$user->roles->name}}</td>
 						<td>{{$user->user_point}}</td>
+						<td>
+							@if($user->lock == 1)
+								<span class="badge bg-success">Active</span>
+							@else
+								<span class="badge bg-danger">Inactive</span>
+							@endif
+						</td>
 						<td>{{date('d-m-Y H:i',strtotime($user->created_at))}}</td>
 						<td>
-                            <!-- <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a> -->
+                            <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
 							<a href="#" data-id="{{$user->id}}" class="btn btn-sm btn-danger delete-btn"><i class="fa fa-times"></i> Delete</a>
                         </td>
 					</tr>
