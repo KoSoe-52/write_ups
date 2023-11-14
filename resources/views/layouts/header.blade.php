@@ -79,7 +79,7 @@
 					@if(Auth::check())
 						{{Auth::user()->roles->name}}
 					@else 
-						Guess
+						Guest
 					@endif
 				</span>
 			</a>

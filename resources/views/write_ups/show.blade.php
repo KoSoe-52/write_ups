@@ -11,14 +11,14 @@
             </p>
 		</div>
         <div class="col-lg-6" style="float:right;text-align:right">
-            <p class="mb-2 mt-4">{{ date('d-m-Y H:i',strtotime($writeUp->created_at)) }} Add by <span class="badge bg-dark text-success">{{$writeUp->users->username}}</span></p>
+            <span class="mb-2 mt-4">{{ date('d-m-Y H:i',strtotime($writeUp->created_at)) }} Add by <span class="badge bg-dark text-success">{{$writeUp->users->username}}</span></span>
         </div>
 	</div>
 	<div class="table-responsive">
         <div>
             <?php 
 				$dom = new DomDocument();
-				$dom->loadHTML($writeUp->content);
+				@$dom->loadHTML($writeUp->content);
 				$customTags = $dom->getElementsByTagName('a');
 				// Iterate through each customtag and replace it with an iframe
 				if(count($customTags)> 0 )

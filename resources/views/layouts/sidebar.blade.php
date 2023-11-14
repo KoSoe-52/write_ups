@@ -32,9 +32,9 @@
 			<div class="ms-3">
 				@if(Auth::check())
 				<h6 class="mb-0">{{ Auth::user()->username}}</h6>
-				<span>Role  {{Auth::user()->roles->name}}</span>
+				<span>{{Auth::user()->roles->name}}</span>
 				@else 
-					<h6 class="mb-0">Guess</h6>
+					<h6 class="mb-0">Guest</h6>
 					<span></span>
 				@endif
 			</div>

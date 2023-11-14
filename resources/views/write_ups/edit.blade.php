@@ -86,7 +86,7 @@
 				@endif
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Write up</button>
+						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Update and Save</button>
 					</div>
 				</div>
 			</div>

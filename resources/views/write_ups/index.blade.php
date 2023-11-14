@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section("title","User Lists")
+@section("title","Write Up Lists")
 @section('content')
 <div class="bg-secondary rounded h-100 p-4">
 	<div class="row">
