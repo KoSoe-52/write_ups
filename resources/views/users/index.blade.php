@@ -19,6 +19,7 @@
 					<th scope="col">Role</th>
 					<th scope="col">Point</th>
                     <th scope="col">Created at</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,11 +31,15 @@
 						<td>{{$user->roles->name}}</td>
 						<td>{{$user->user_point}}</td>
 						<td>{{date('d-m-Y H:i',strtotime($user->created_at))}}</td>
+						<td>
+                            <!-- <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a> -->
+							<a href="#" data-id="{{$user->id}}" class="btn btn-sm btn-danger delete-btn"><i class="fa fa-times"></i> Delete</a>
+                        </td>
 					</tr>
 				@endforeach
 			@else
 				<tr>
-					<td colspan="5" style="text-align:center">There is no record</td>
+					<td colspan="6" style="text-align:center">No data available..</td>
 				</tr>
 			@endif
 			</tbody>
@@ -51,6 +56,64 @@
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				}
+			});
+			$(document).on("click",".delete-btn",function(){
+				var id = $(this).data("id");
+				Swal.fire({
+					  title: 'ပယ်ဖျက်မည်မှာသေချာလား?',
+                      showCancelButton: true,
+                      confirmButtonText: 'ဖျက်မည်',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						var id = $(this).data("id");
+						var url = "{{ route('users.destroy', ":id") }}";
+							url = url.replace(':id', id);
+							$.ajax({
+								url: url,
+								type: "DELETE",
+								data:  [],
+								cache:false,
+								contentType:false,
+								processData:false,
+								success: function(response) {
+								console.log(JSON.stringify(response))
+									if(response.status === true)
+									{
+										Swal.fire({
+												title: response.msg,
+												icon:'success',
+												width: 300,
+												color: '#716add',
+												showCancelButton: false,
+												showConfirmButton: false,
+											});
+										setInterval(() => {
+											window.location.reload();
+										}, 1000);
+										
+									}else
+									{
+										Swal.fire({
+											title: response.msg,
+											width: 300,
+											color: '#716add',
+											showCancelButton: false,
+											showConfirmButton: false
+										});
+									}
+								},error: function (request, status, error) {
+									Swal.fire({
+											title: "User သည် write up ထည့်သွင်းထားသည်",
+											icon:'error',
+											width: 300,
+											color: '#716add',
+											showCancelButton: false,
+											showConfirmButton: false
+										});
+								}
+							});
+					}
+				});
 			});
 		});
 	</script>

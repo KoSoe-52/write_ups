@@ -102,6 +102,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        
+        //$data = WriteUp::find($id)->delete();
+        $category->delete();
+        return response()->json([
+            "status" => true,
+            "msg" => "Deleted category",
+            "data" => []
+        ]);
     }
 }

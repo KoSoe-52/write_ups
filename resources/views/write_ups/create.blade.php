@@ -44,7 +44,6 @@
 						<strong class='content'></strong>
 					</span>
 				</div>
-				@if(Auth::user()->role_id ==1)
 					<div class="col-12  mb-3">
 						<div class="form-group">
 							<label for="point">Point <b class="text-danger">*</b> </label>
@@ -71,7 +70,6 @@
 							</label>
 						</div>
 					</div>
-				@endif
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
 						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Write up</button>

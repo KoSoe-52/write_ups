@@ -99,6 +99,7 @@ class WriteUpController extends Controller
                 $data->category_id= $request->category_id;
                 $data->content = $request->content;
                 $data->user_id = Auth::user()->id;
+                $data->status = $request->status;
                 $data->save();
                 /**
                  * point save
@@ -243,6 +244,6 @@ class WriteUpController extends Controller
      */
     public function destroy(WriteUp $writeUp)
     {
-        //
+       
     }
 }
