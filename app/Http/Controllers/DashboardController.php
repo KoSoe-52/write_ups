@@ -16,7 +16,18 @@ class DashboardController extends Controller
         $categories = Category::leftJoin("write_ups","categories.id","=","write_ups.category_id")
                      ->select("categories.name","categories.image",DB::raw("COUNT(write_ups.id) as total"))
                      ->groupBy(["categories.name","categories.image"])->get();
-        return view("dashboard.index",compact('categories'));
+        $colors = [];
+        /**
+         * categories ရှိသလောက် colors ကို generate လုပ်ဆောင်သည်
+         */
+        if(count($categories) > 0)
+        {
+             for($i=0;$i<count($categories);$i++)
+             {
+                $colors[] = "#".dechex(rand(0x000000, 0xFFFFFF));
+             }
+        }
+        return view("dashboard.index",compact('categories','colors'));
     }
 
     /**

@@ -50,13 +50,7 @@
         data: {
             labels: @json($cat), //["Italy", "France", "Spain", "USA", "Argentina"],
             datasets: [{
-                backgroundColor: [
-                    "green",
-                    "green",
-                    "green",
-                    "green",
-                    "green"
-                ],
+                backgroundColor: @json($colors)  ,//["green","green","green","green","green"],
                 data: @json($tot)
             }]
         },
@@ -71,13 +65,7 @@
         data: {
             labels: @json($cat),
             datasets: [{
-                backgroundColor: [
-                    "green",
-                    "green",
-                    "green",
-                    "green",
-                    "green"
-                ],
+                backgroundColor: @json($colors),//["green","green","green","green","green"],
                 data: @json($tot)
             }]
         },
