@@ -59,6 +59,11 @@
                                 @enderror
                                 
                             </div>
+                            <div>
+                                @if(session('status'))
+                                 <p class="text-danger">{{session('status')}}</p>
+                                @endif
+                            </div>
                             <button type="submit" class="btn btn-success py-3 w-100 mb-4 mt-4"> Sign In</button>
                         </div>                        
                     </form>

@@ -79,6 +79,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             if(Auth::check())
             {
+                //return Auth::user();
+                if(Auth::user()->lock == 2)
+                {
+                    return redirect()->route('login')->with("status", "Your account is locked. Please contact to admin.");    
+                }
                 return redirect("/");
             }else
             {
