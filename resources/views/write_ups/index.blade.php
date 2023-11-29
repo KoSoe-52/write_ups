@@ -61,7 +61,10 @@
 			@endif
 			</tbody>
 		</table>
-		{{$write_ups->links()}}
+		<div class="row mt-3">
+        	<div class="col-xl-8">{{ $write_ups->links() }} </span></div>
+        	<div class="col-xl-4" style="text-align:right">Total ( {{$write_ups->total() }} ) number of rows</div>
+    	</div><br/>
 	</div>
 </div>
 @endsection

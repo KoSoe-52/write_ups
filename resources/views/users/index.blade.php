@@ -53,7 +53,10 @@
 			@endif
 			</tbody>
 		</table>
-		{{$users->links()}}
+		<div class="row mt-3">
+        	<div class="col-xl-8">{{ $users->links() }} </span></div>
+        	<div class="col-xl-4" style="text-align:right">Total ( {{$users->total() }} ) number of rows</div>
+    	</div><br/>
 	</div>
 </div>
 @endsection

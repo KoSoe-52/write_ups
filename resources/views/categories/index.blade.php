@@ -40,7 +40,10 @@
 			@endif
 			</tbody>
 		</table>
-		{{$categories->links()}}
+		<div class="row mt-3">
+        	<div class="col-xl-8">{{ $categories->links() }} </span></div>
+        	<div class="col-xl-4" style="text-align:right">Total ( {{$categories->total() }} ) number of rows</div>
+    	</div><br/>
 	</div>
 </div>
 @endsection
