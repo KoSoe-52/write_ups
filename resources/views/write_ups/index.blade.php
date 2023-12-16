@@ -76,15 +76,20 @@
 						<td>{{date('d-m-Y H:i',strtotime($write_up->created_at))}} </td>
 						<td>
 							@if(Auth::check())
-								@if((Auth::user()->role_id == 1 || Auth::user()->role_id == $write_up->user_id) || ((Auth::user()->role_id == 2 && Auth::user()->role_id == 3) || $write_up->status == 2))
+								@if((Auth::user()->role_id == 1 || Auth::user()->id == $write_up->user_id) || ((Auth::user()->role_id == 2 && Auth::user()->role_id == 3) || $write_up->status == 2))
 									<a href="{{ route('write-ups.show',$write_up->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> View</a>
 								@endif
 							@elseif($write_up->status == 2)
 								<a href="{{ route('write-ups.show',$write_up->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> View</a>
 							@endif
 							@if(Auth::check())
-								@if((Auth::user()->role_id == 1 || Auth::user()->role_id == $write_up->user_id))
+								@if((Auth::user()->role_id == 1 || Auth::user()->id == $write_up->user_id))
 									<a href="{{ route('write-ups.edit',$write_up->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+								@endif
+							@endif
+							@if(Auth::check())
+								@if((Auth::user()->role_id == 1 || Auth::user()->id == $write_up->user_id))
+									<button class="btn btn-sm btn-danger delete-btn" data-id="{{ $write_up->id }}"><i class="fa fa-times"></i> Delete</button>
 								@endif
 							@endif
 						</td>
@@ -112,6 +117,64 @@
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				}
+			});
+			$(document).on("click",".delete-btn",function(){
+				var id = $(this).data("id");
+				Swal.fire({
+					  title: 'ပယ်ဖျက်မည်မှာသေချာလား?',
+                      showCancelButton: true,
+                      confirmButtonText: 'ဖျက်မည်',
+				}).then((result) => {
+					if (result.isConfirmed) {
+						var id = $(this).data("id");
+						var url = "{{ route('write-ups.destroy', ":id") }}";
+							url = url.replace(':id', id);
+							$.ajax({
+								url: url,
+								type: "DELETE",
+								data:  [],
+								cache:false,
+								contentType:false,
+								processData:false,
+								success: function(response) {
+								console.log(JSON.stringify(response))
+									if(response.status === true)
+									{
+										Swal.fire({
+												title: response.msg,
+												icon:'success',
+												width: 300,
+												color: '#716add',
+												showCancelButton: false,
+												showConfirmButton: false,
+											});
+										setInterval(() => {
+											window.location.reload();
+										}, 1000);
+										
+									}else
+									{
+										Swal.fire({
+											title: response.msg,
+											width: 300,
+											color: '#716add',
+											showCancelButton: false,
+											showConfirmButton: false
+										});
+									}
+								},error: function (request, status, error) {
+									Swal.fire({
+											title: error,
+											icon:'error',
+											width: 300,
+											color: '#716add',
+											showCancelButton: false,
+											showConfirmButton: false
+										});
+								}
+							});
+					}
+				});
 			});
 		});
 	</script>

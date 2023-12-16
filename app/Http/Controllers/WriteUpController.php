@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\WriteUpPoint;
 use App\Models\User;
@@ -265,6 +266,46 @@ class WriteUpController extends Controller
      */
     public function destroy(WriteUp $writeUp)
     {
-       
+
+        /**
+         * process ၃ ခု ဆောင်ရွက်ရသည်
+         */
+        DB::beginTransaction();
+        try{
+            $write_ups_point = WriteUpPoint::where("write_up_id",$writeUp->id)->first();
+            /**
+             * get payment point
+             */
+            $paymentPoint = (int) $write_ups_point->point;
+            $write_ups_point->delete();
+            /**
+             * get user_id
+             */
+            $user_id = $writeUp->user_id;
+            $writeUp->delete();
+            /**
+             * ပေးထားတဲ့ user point ကို ပြန်နုတ် ယူသည်
+             */
+            if($paymentPoint > 0)
+            {
+                $user = User::find($user_id);
+                $user->user_point = (int) ($user->user_point - $paymentPoint);
+                $user->update();
+            }
+        }catch(\Exception $e)
+        {
+            DB::rollback();
+            return response()->json([
+                "status"  => false,
+                "msg"     => "INTERNAL SERVER ERROR!",
+                "data" => []
+            ],500);
+        } 
+        DB::commit(); 
+        return response()->json([
+            "status" => true,
+            "msg" => "Write Up ပယ်ဖျက်ခြင်း အောင်မြင်ပါသည်",
+            "data" => []
+        ]);
     }
 }

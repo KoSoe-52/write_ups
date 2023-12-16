@@ -32,6 +32,7 @@
 				</div>
 				<div class="col-12 col-xl-6  mt-3">
 					<div class="form-group">
+						<a href="{{ url()->previous() }}" class="btn btn-sm btn-info mb-2"><i class="fa fa-arrow-left"></i> Back</a>
 						<button type="submit" class="btn btn-sm btn-success mb-2"><i class="fa fa-paper-plane"></i> Create Category</button>
 					</div>
 				</div>

@@ -8,7 +8,7 @@
     <meta content="CTFD" name="keywords">
     <meta content="CTFD" name="description">
     <!-- Favicon -->
-    <link href="{{asset('images/logo.png')}}" rel="icon">
+    <link href="{{asset('images/logo4.png')}}" rel="icon">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">

@@ -7,7 +7,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     <!-- Favicon -->
-    <link href="{{asset('images/logo.png')}}" rel="icon">
+    <link href="{{asset('images/logo4.png')}}" rel="icon">
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
@@ -34,7 +34,7 @@
                         <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <!-- <a href="index.html" class=""> -->
-                                    <h3 class="text-success"> <img src="{{asset('images/logo.png')}}" alt="logo" style="width:60px;height:60px;"> CTF TRAINER</h3>
+                                    <h3 class="text-success"> <img src="{{asset('images/logo4.png')}}" alt="logo" style="width:80px;height:80px;"> CTF TRAINER</h3>
                                 <!-- </a> -->
                                 <!-- <h3>Crypto-2D</h3> -->
                             </div>

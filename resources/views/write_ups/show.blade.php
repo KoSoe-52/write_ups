@@ -45,6 +45,7 @@
 			?>	
         </div>
 	</div>
+	<a href="{{ url()->previous() }}" class="btn btn-sm btn-info mb-2"><i class="fa fa-arrow-left"></i> Back</a>
 </div>
 @endsection
 @section('script')
