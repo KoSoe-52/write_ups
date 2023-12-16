@@ -74,7 +74,7 @@
 		</div> -->
 		<div class="nav-item dropdown">
 			<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-				<img class="rounded-circle me-lg-2" src="{{asset('images/logo.png')}}" alt="" style="width: 40px; height: 40px;">
+				<img class="rounded-circle me-lg-2" src="{{asset('images/logo3.png')}}" alt="" style="width: 40px; height: 40px;">
 				<span class="d-none d-lg-inline-flex">
 					@if(Auth::check())
 						{{Auth::user()->roles->name}}

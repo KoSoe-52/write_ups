@@ -15,10 +15,31 @@ class WriteUpController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $write_ups = WriteUp::orderBy("id","DESC")->paginate(10);
-        return view("write_ups.index",compact("write_ups"));
+
+        $write_ups = WriteUp::query();
+        $requestArray = array();
+        if(!empty($request->title))
+        {
+            $write_ups->where("title","LIKE",'%'.$request->title.'%');
+            $requestArray[] = $request->title;
+        }
+        if(!empty($request->category_id))
+        {
+            $write_ups->where("category_id",$request->category_id);
+            $requestArray[] = $request->category_id;
+        }
+        if(count($requestArray) > 0)
+        {
+            $write_ups = $write_ups->orderBy("id","DESC")->paginate(10);
+            $write_ups = $write_ups->appends($request->all());
+        }else
+        {
+            $write_ups = $write_ups->orderBy("id","DESC")->paginate(10);
+        }
+        $categories = Category::all();
+        return view("write_ups.index",compact("write_ups","categories"));
     }
 
     /**

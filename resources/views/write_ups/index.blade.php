@@ -2,9 +2,45 @@
 @section("title","Write Up Lists")
 @section('content')
 <div class="bg-secondary rounded h-100 p-4">
+	<form class="form">
+		<div class="row">
+			<div class="col-md-6 col-xl-3">
+				<div class="form-group">
+					<label for="title">Title</label>
+					<input type="text" id="title" class="form-control"
+						placeholder="Enter title" value="{{ request()->title }}" name="title" autocomplete="off">
+				</div>
+			</div>
+
+			<div class="col-md-6 col-xl-3">
+				<div class="form-group">
+					<label for="category_id">Category</label>
+					<select class="form-select mb-3" id="category_id" name="category_id">
+						<option></option>
+						@if(count($categories) > 0 )
+							@foreach($categories as $key=>$category)
+								@if($category->id == request()->category_id)
+									<option value="{{$category->id}}" selected>{{$category->name}}</option>
+								@else
+									<option value="{{$category->id}}">{{$category->name}}</option>
+								@endif
+							@endforeach
+						@endif
+					</select>
+				</div>
+			</div>
+			<div class="col-md-6 col-xl-3">
+				<div class="form-group">
+					<label for="search">Search</label><br/>
+					<button type="submit" class="btn btn-sm btn-success" id="search"><i class="fa fa-search"></i> Search</button>
+					<!-- <button type="reset" class="btn btn-light-secondary me-1 mb-1"></button> -->
+				</div>
+			</div>
+		</div>
+	</form>
 	<div class="row">
 		<div class="col-sm-12 col-md-6  col-lg-6">
-			<h6 class="mb-4 mt-4">Write up Lists</h6>
+			<h6 class="mb-4 mt-1">Write up Lists</h6>
 		</div>
 	</div>
 	<div class="table-responsive">
