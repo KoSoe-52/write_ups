@@ -5,4 +5,6 @@
 -  [composer install]
 -  [php artisan migrate] before you mush create database and setup .env file 
 -  [php artisan db:seed]
+## EDITOR
+-   https://richtexteditor.com/Demos/
 
